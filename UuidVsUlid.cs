@@ -1,10 +1,12 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Engines;
 
 namespace Benchmark_UUID_ULID_SqlServer
 {
+    [SimpleJob(RunStrategy.Throughput, launchCount: 1, warmupCount: 10, iterationCount: 100, invocationCount: 5_000_000)]
     public class UuidVsUlid
     {
-        [Benchmark]
+        [Benchmark(Baseline = true)]
         public Guid Uuid_V4() => Guid.NewGuid();
 
         [Benchmark]

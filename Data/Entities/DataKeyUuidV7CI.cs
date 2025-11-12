@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Benchmark_UUID_ULID_SqlServer.Data.Entities
 {
-    internal class DataKeyUuidV7Detail
+    internal class DataKeyUuidV7CI
     {
         public required Guid Id { get; set; }
-        public required int Data1 { get; set; }
-        public required int Data2 { get; set; }
+        public required int Counter { get; set; }
+        public required IList<DataKeyUuidV7CIDetail> Details { get; set; }
     }
 }

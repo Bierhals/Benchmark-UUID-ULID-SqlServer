@@ -1,23 +1,24 @@
 ﻿using Benchmark_UUID_ULID_SqlServer.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection.Metadata;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Benchmark_UUID_ULID_SqlServer.Data.Configuration
 {
-    internal class DataKeyUlidBinaryConfig : IEntityTypeConfiguration<DataKeyUlidBinary>
+    internal class DataKeyUuidV7NCIConfig : IEntityTypeConfiguration<DataKeyUuidV7NCI>
     {
-        public void Configure(EntityTypeBuilder<DataKeyUlidBinary> builder)
+        public void Configure(EntityTypeBuilder<DataKeyUuidV7NCI> builder)
         {
             builder
-                .HasKey(b => b.Id);
-            //clustered index is default
-            //.IsClustered(true);
+                .HasKey(b => b.Id)
+                .IsClustered(false);
 
             builder.Property(b => b.Id)
-                .HasColumnType("binary(16)")
-                .HasConversion(
-                    v => v.ToByteArray(),
-                    v => new Ulid(v))
                 .IsRequired()
                 .ValueGeneratedNever();
             builder.Property(b => b.Counter)

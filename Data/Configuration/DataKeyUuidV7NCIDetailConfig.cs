@@ -10,14 +10,13 @@ using System.Reflection.Emit;
 
 namespace Benchmark_UUID_ULID_SqlServer.Data.Configuration
 {
-    internal class DataKeyUuidV7DetailConfig : IEntityTypeConfiguration<DataKeyUuidV7Detail>
+    internal class DataKeyUuidV7NCIDetailConfig : IEntityTypeConfiguration<DataKeyUuidV7NCIDetail>
     {
-        public void Configure(EntityTypeBuilder<DataKeyUuidV7Detail> builder)
+        public void Configure(EntityTypeBuilder<DataKeyUuidV7NCIDetail> builder)
         {
             builder
-                .HasKey(b => b.Id);
-            //clustered index is default
-            //.IsClustered(true);
+                .HasKey(b => b.Id)
+                .IsClustered(false);
 
 
             builder.Property(b => b.Id)
@@ -28,7 +27,7 @@ namespace Benchmark_UUID_ULID_SqlServer.Data.Configuration
             builder.Property(b => b.Data2)
                 .IsRequired();
 
-            builder.HasOne<DataKeyUuidV7>()
+            builder.HasOne<DataKeyUuidV7NCI>()
                 .WithMany(e => e.Details)
                 .IsRequired();
         }

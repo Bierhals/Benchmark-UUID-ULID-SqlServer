@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(BenchmarkContext))]
-    [Migration("20251111224528_Initial")]
+    [Migration("20251112205849_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -167,20 +167,7 @@ namespace Data.Migrations
                     b.ToTable("DataKeyUuidV4NCIDetails");
                 });
 
-            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Counter")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DataKeyUuidV7s");
-                });
-
-            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7Binary", b =>
+            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7BinaryBigEndian", b =>
                 {
                     b.Property<byte[]>("Id")
                         .HasColumnType("binary(16)");
@@ -190,10 +177,10 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DataKeyUuidV7Binarys");
+                    b.ToTable("DataKeyUuidV7BinaryBigEndians");
                 });
 
-            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7BinaryDetail", b =>
+            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7BinaryBigEndianDetail", b =>
                 {
                     b.Property<byte[]>("Id")
                         .HasColumnType("binary(16)");
@@ -204,18 +191,31 @@ namespace Data.Migrations
                     b.Property<int>("Data2")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("DataKeyUuidV7BinaryId")
+                    b.Property<byte[]>("DataKeyUuidV7BinaryBigEndianId")
                         .IsRequired()
                         .HasColumnType("binary(16)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DataKeyUuidV7BinaryId");
+                    b.HasIndex("DataKeyUuidV7BinaryBigEndianId");
 
-                    b.ToTable("DataKeyUuidV7BinaryDetails");
+                    b.ToTable("DataKeyUuidV7BinaryBigEndianDetails");
                 });
 
-            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7Detail", b =>
+            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7CI", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Counter")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DataKeyUuidV7CIs");
+                });
+
+            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7CIDetail", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -226,14 +226,91 @@ namespace Data.Migrations
                     b.Property<int>("Data2")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("DataKeyUuidV7Id")
+                    b.Property<Guid>("DataKeyUuidV7CIId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DataKeyUuidV7Id");
+                    b.HasIndex("DataKeyUuidV7CIId");
 
-                    b.ToTable("DataKeyUuidV7Details");
+                    b.ToTable("DataKeyUuidV7CIDetails");
+                });
+
+            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7NCI", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Counter")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"), false);
+
+                    b.ToTable("DataKeyUuidV7NCIs");
+                });
+
+            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7NCIBinary", b =>
+                {
+                    b.Property<byte[]>("Id")
+                        .HasColumnType("binary(16)");
+
+                    b.Property<int>("Counter")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"), false);
+
+                    b.ToTable("DataKeyUuidV7NCIBinarys");
+                });
+
+            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7NCIBinaryDetail", b =>
+                {
+                    b.Property<byte[]>("Id")
+                        .HasColumnType("binary(16)");
+
+                    b.Property<int>("Data1")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Data2")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("DataKeyUuidV7NCIBinaryId")
+                        .IsRequired()
+                        .HasColumnType("binary(16)");
+
+                    b.HasKey("Id");
+
+                    SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"), false);
+
+                    b.HasIndex("DataKeyUuidV7NCIBinaryId");
+
+                    b.ToTable("DataKeyUuidV7NCIBinaryDetails");
+                });
+
+            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7NCIDetail", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Data1")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Data2")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("DataKeyUuidV7NCIId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"), false);
+
+                    b.HasIndex("DataKeyUuidV7NCIId");
+
+                    b.ToTable("DataKeyUuidV7NCIDetails");
                 });
 
             modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7Text", b =>
@@ -307,20 +384,38 @@ namespace Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7BinaryDetail", b =>
+            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7BinaryBigEndianDetail", b =>
                 {
-                    b.HasOne("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7Binary", null)
+                    b.HasOne("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7BinaryBigEndian", null)
                         .WithMany("Details")
-                        .HasForeignKey("DataKeyUuidV7BinaryId")
+                        .HasForeignKey("DataKeyUuidV7BinaryBigEndianId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7Detail", b =>
+            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7CIDetail", b =>
                 {
-                    b.HasOne("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7", null)
+                    b.HasOne("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7CI", null)
                         .WithMany("Details")
-                        .HasForeignKey("DataKeyUuidV7Id")
+                        .HasForeignKey("DataKeyUuidV7CIId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7NCIBinaryDetail", b =>
+                {
+                    b.HasOne("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7NCIBinary", null)
+                        .WithMany("Details")
+                        .HasForeignKey("DataKeyUuidV7NCIBinaryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7NCIDetail", b =>
+                {
+                    b.HasOne("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7NCI", null)
+                        .WithMany("Details")
+                        .HasForeignKey("DataKeyUuidV7NCIId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -354,12 +449,22 @@ namespace Data.Migrations
                     b.Navigation("Details");
                 });
 
-            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7", b =>
+            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7BinaryBigEndian", b =>
                 {
                     b.Navigation("Details");
                 });
 
-            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7Binary", b =>
+            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7CI", b =>
+                {
+                    b.Navigation("Details");
+                });
+
+            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7NCI", b =>
+                {
+                    b.Navigation("Details");
+                });
+
+            modelBuilder.Entity("Benchmark_UUID_ULID_SqlServer.Data.Entities.DataKeyUuidV7NCIBinary", b =>
                 {
                     b.Navigation("Details");
                 });

@@ -4,21 +4,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Benchmark_UUID_ULID_SqlServer.Data.Configuration
 {
-    internal class DataKeyUlidBinaryDetailConfig : IEntityTypeConfiguration<DataKeyUlidBinaryDetail>
+    internal class DataKeyUuidV7NCIBinaryDetailConfig : IEntityTypeConfiguration<DataKeyUuidV7NCIBinaryDetail>
     {
-        public void Configure(EntityTypeBuilder<DataKeyUlidBinaryDetail> builder)
+        public void Configure(EntityTypeBuilder<DataKeyUuidV7NCIBinaryDetail> builder)
         {
             builder
-                .HasKey(b => b.Id);
-            //clustered index is default
-            //.IsClustered(true);
-
+                .HasKey(b => b.Id)
+                .IsClustered(false);
 
             builder.Property(b => b.Id)
                 .HasColumnType("binary(16)")
                 .HasConversion(
                     v => v.ToByteArray(),
-                    v => new Ulid(v))
+                    v => new Guid(v))
                 .IsRequired()
                 .ValueGeneratedNever();
             builder.Property(b => b.Data1)
@@ -26,7 +24,7 @@ namespace Benchmark_UUID_ULID_SqlServer.Data.Configuration
             builder.Property(b => b.Data2)
                 .IsRequired();
 
-            builder.HasOne<DataKeyUlidBinary>()
+            builder.HasOne<DataKeyUuidV7NCIBinary>()
                 .WithMany(e => e.Details)
                 .IsRequired();
         }

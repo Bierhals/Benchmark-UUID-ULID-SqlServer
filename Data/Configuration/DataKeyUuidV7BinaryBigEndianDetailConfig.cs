@@ -1,18 +1,12 @@
 ﻿using Benchmark_UUID_ULID_SqlServer.Data.Entities;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Benchmark_UUID_ULID_SqlServer.Data.Configuration
 {
-    internal class DataKeyUuidV7BinaryConfig : IEntityTypeConfiguration<DataKeyUuidV7Binary>
+    internal class DataKeyUuidV7BinaryBigEndianDetailConfig : IEntityTypeConfiguration<DataKeyUuidV7BinaryBigEndianDetail>
     {
-        public void Configure(EntityTypeBuilder<DataKeyUuidV7Binary> builder)
+        public void Configure(EntityTypeBuilder<DataKeyUuidV7BinaryBigEndianDetail> builder)
         {
             builder
                 .HasKey(b => b.Id);
@@ -26,10 +20,14 @@ namespace Benchmark_UUID_ULID_SqlServer.Data.Configuration
                     v => new Guid(v, true))
                 .IsRequired()
                 .ValueGeneratedNever();
-            builder.Property(b => b.Counter)
+            builder.Property(b => b.Data1)
+                .IsRequired();
+            builder.Property(b => b.Data2)
                 .IsRequired();
 
-            builder.HasMany(b => b.Details);
+            builder.HasOne<DataKeyUuidV7BinaryBigEndian>()
+                .WithMany(e => e.Details)
+                .IsRequired();
         }
     }
 }

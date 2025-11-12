@@ -15,12 +15,16 @@ namespace Benchmark_UUID_ULID_SqlServer.Data
         public DbSet<DataKeyUuidV4CIDetail> DataKeyUuidV4CIDetails { get; set; }
         public DbSet<DataKeyUuidV4NCI> DataKeyUuidV4NCIs { get; set; }
         public DbSet<DataKeyUuidV4NCIDetail> DataKeyUuidV4NCIDetails { get; set; }
-        public DbSet<DataKeyUuidV7> DataKeyUuidV7s { get; set; }
-        public DbSet<DataKeyUuidV7Detail> DataKeyUuidV7Details { get; set; }
+        public DbSet<DataKeyUuidV7NCI> DataKeyUuidV7NCIs { get; set; }
+        public DbSet<DataKeyUuidV7NCIDetail> DataKeyUuidV7NCIDetails { get; set; }
+        public DbSet<DataKeyUuidV7CI> DataKeyUuidV7CIs { get; set; }
+        public DbSet<DataKeyUuidV7CIDetail> DataKeyUuidV7CIDetails { get; set; }
         public DbSet<DataKeyUuidV7Text> DataKeyUuidV7Texts { get; set; }
         public DbSet<DataKeyUuidV7TextDetail> DataKeyUuidV7TextDetails { get; set; }
-        public DbSet<DataKeyUuidV7Binary> DataKeyUuidV7Binarys { get; set; }
-        public DbSet<DataKeyUuidV7BinaryDetail> DataKeyUuidV7BinaryDetails { get; set; }
+        public DbSet<DataKeyUuidV7NCIBinary> DataKeyUuidV7NCIBinarys { get; set; }
+        public DbSet<DataKeyUuidV7NCIBinaryDetail> DataKeyUuidV7NCIBinaryDetails { get; set; }
+        public DbSet<DataKeyUuidV7BinaryBigEndian> DataKeyUuidV7BinaryBigEndians { get; set; }
+        public DbSet<DataKeyUuidV7BinaryBigEndianDetail> DataKeyUuidV7BinaryBigEndianDetails { get; set; }
         public DbSet<DataKeyUlidText> DataKeyUlidTexts { get; set; }
         public DbSet<DataKeyUlidTextDetail> DataKeyUlidTextDetails { get; set; }
         public DbSet<DataKeyUlidBinary> DataKeyUlidBinarys { get; set; }
